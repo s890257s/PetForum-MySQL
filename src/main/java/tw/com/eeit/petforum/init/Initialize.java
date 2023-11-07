@@ -45,7 +45,7 @@ public class Initialize implements ServletContextListener {
 
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
-//			createDB(conn); // 建立資料庫
+			createDB(conn); // 建立資料庫
 			createTableAndInsertData(conn); // 建立Member資料表並加入預設值
 
 		} catch (Exception e) {

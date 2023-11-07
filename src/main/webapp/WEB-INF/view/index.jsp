@@ -12,7 +12,7 @@
 
 <style type="text/css">
 .backgroundImg {
-	background-image: url('/PetForum/assets/pet.png');
+	background-image: url('${root}/assets/pet.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
