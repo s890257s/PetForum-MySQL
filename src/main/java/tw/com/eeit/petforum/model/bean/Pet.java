@@ -1,5 +1,10 @@
 package tw.com.eeit.petforum.model.bean;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URLConnection;
+import java.util.Base64;
+
 public class Pet {
 
 	private int pID;
@@ -70,7 +75,19 @@ public class Pet {
 	}
 
 	public void setpPhoto(byte[] pPhoto) {
+
 		this.pPhoto = pPhoto;
+
+		String base64String = Base64.getEncoder().encodeToString(pPhoto);
+
+		try {
+			String guessContentTypeFromStream = URLConnection
+					.guessContentTypeFromStream(new ByteArrayInputStream(pPhoto));
+
+			this.pPhotoBase64 = "data:%s;base64,".formatted(guessContentTypeFromStream) + base64String;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Member getMember() {

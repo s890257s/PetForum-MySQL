@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +30,9 @@
 				<div class="col-lg-4">
 					<div class="card mb-4">
 						<div class="card-body text-center">
-							<img src="${root}/assets/no_image.png"
+							<img src="${member.mPhoto }"
 								class="rounded-circle img-fluid w-50" />
-							<h5 class="my-3">姓名</h5>
+							<h5 class="my-3">${member.mName }</h5>
 						</div>
 					</div>
 					<div class="card mb-4 mb-lg-0">
@@ -42,7 +43,7 @@
 										<p class="mb-0">Email</p>
 									</div>
 									<div class="col-sm-9">
-										<p class="text-muted mb-0">xxx@mail.com</p>
+										<p class="text-muted mb-0">${member.email }</p>
 									</div>
 								</div>
 								<hr />
@@ -51,7 +52,7 @@
 										<p class="mb-0">權限</p>
 									</div>
 									<div class="col-sm-9">
-										<p class="text-muted mb-0">user</p>
+										<p class="text-muted mb-0">${member.level }</p>
 									</div>
 								</div>
 								<hr />
@@ -60,7 +61,7 @@
 										<p class="mb-0">年齡</p>
 									</div>
 									<div class="col-sm-9">
-										<p class="text-muted mb-0">18</p>
+										<p class="text-muted mb-0">${member.mAge }</p>
 									</div>
 								</div>
 								<hr />
@@ -69,7 +70,7 @@
 										<p class="mb-0">寵物數</p>
 									</div>
 									<div class="col-sm-9">
-										<p class="text-muted mb-0">2隻</p>
+										<p class="text-muted mb-0">${member.pets.size() }</p>
 									</div>
 								</div>
 							</div>
@@ -78,27 +79,19 @@
 				</div>
 				<div class="col-lg-8">
 					<div class="row">
-						<div class="col-md-6 mb-4">
-							<div class="card mb-4 mb-md-0">
-								<div class="card-body text-center position-relative">
-									<i
-										class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide"></i>
-									<img src="${root}/assets/no_image.png" class="w-100 petPhoto" />
-									<p class="card-text fs-3">狗狗</p>
-								</div>
-							</div>
-						</div>
 
-						<div class="col-md-6 mb-4">
-							<div class="card mb-4 mb-md-0">
-								<div class="card-body text-center position-relative">
-									<i
-										class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide"></i>
-									<img src="${root}/assets/no_image.png" class="w-100 petPhoto" />
-									<p class="card-text fs-3">貓貓</p>
+						<c:forEach items="${member.pets}" var="p">
+							<div class="col-md-6 mb-4">
+								<div class="card mb-4 mb-md-0">
+									<div class="card-body text-center position-relative">
+										<i
+											class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide"></i>
+										<img src="${p.pPhotoBase64}" class="w-100 petPhoto" />
+										<p class="card-text fs-3">${p.pName }</p>
+									</div>
 								</div>
 							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

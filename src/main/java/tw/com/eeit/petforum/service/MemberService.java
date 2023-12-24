@@ -1,9 +1,14 @@
 package tw.com.eeit.petforum.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import tw.com.eeit.petforum.model.bean.Likes;
+import tw.com.eeit.petforum.model.bean.Member;
+import tw.com.eeit.petforum.model.bean.Pet;
 import tw.com.eeit.petforum.model.dao.LikesDAO;
+import tw.com.eeit.petforum.model.dao.MemberDAO;
+import tw.com.eeit.petforum.model.dao.PetDAO;
 import tw.com.eeit.petforum.util.ConnectionFactory;
 
 public class MemberService {
@@ -19,16 +24,16 @@ public class MemberService {
 	public String switchLikeStatus(Likes likes) {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
-			LikesDAO lDAO = new LikesDAO(conn);
-			Likes likesFromDB = lDAO.findLikeByMemberIDAndPetID(likes);
+			LikesDAO likesDAO = new LikesDAO(conn);
+			Likes likesFromDB = likesDAO.findLikeByMemberIDAndPetID(likes);
 
 			if (likesFromDB == null) {
-				lDAO.addLike(likes);
+				likesDAO.addLike(likes);
 				return "like!";
 			}
 
 			if (likesFromDB != null) {
-				lDAO.removeLike(likes);
+				likesDAO.removeLike(likes);
 				return "unlike!";
 			}
 
@@ -36,5 +41,53 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return "error!";
+	}
+
+	public List<Pet> getAllPets() {
+
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			PetDAO petDAO = new PetDAO(conn);
+
+			List<Pet> pets = petDAO.findAllPetWithMember();
+			return pets;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public Member login(String email, String password) {
+
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			MemberDAO memberDAO = new MemberDAO(conn);
+
+			Member loggedInMember = memberDAO.findMemberByEmailAndPassword(email, password);
+
+			return loggedInMember;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public Member getMemberByID(int memberID) {
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			MemberDAO memberDAO = new MemberDAO(conn);
+
+			Member member = memberDAO.findMemberWithPetByID(memberID);
+
+			return member;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
