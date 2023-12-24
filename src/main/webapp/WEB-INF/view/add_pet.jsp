@@ -7,7 +7,7 @@
 <title>${webName}-新增寵物</title>
 </head>
 
-<jsp:include page="${component}/common_dependencies.jsp" />
+<jsp:include page="${component}/common_imports.jsp" />
 
 <body>
 	<jsp:include page="${component}/header.jsp" />
@@ -17,17 +17,16 @@
 				<div class="col text-center">
 					<form>
 						<div class="mb-3">
-							<label>寵物名字：<input type="text"
-								name="petName" class="form-control" /></label>
+							<label>寵物名字：<input type="text" name="petName"
+								class="form-control" /></label>
 						</div>
 						<div class="mb-3">
-							<label>寵物年齡：<input type="number"
-								name="petAge" class="form-control w-100" min="0" /></label>
+							<label>寵物年齡：<input type="number" name="petAge"
+								class="form-control w-100" min="0" /></label>
 						</div>
 						<div class="mb-3">
-							<label>寵物種類： <input
-								class="form-control" list="petTypeList" name="petType" /> <datalist
-									id="petTypeList">
+							<label>寵物種類： <input class="form-control"
+								list="petTypeList" name="petType" /> <datalist id="petTypeList">
 									<option value="dog"></option>
 									<option value="cat"></option>
 									<option value="bird"></option>
@@ -38,8 +37,8 @@
 								</datalist></label>
 						</div>
 						<div class="mb-1">
-							<label>寵物照片：<input type="file"
-								name="petPhoto" class="form-control" id="petPhotoInput" /></label>
+							<label>寵物照片：<input type="file" name="petPhoto"
+								class="form-control" id="petPhotoInput" /></label>
 						</div>
 						<div class="mb-3">
 							<img src="${root}/assets/no_image.png" id="previewPhotoIMG"
