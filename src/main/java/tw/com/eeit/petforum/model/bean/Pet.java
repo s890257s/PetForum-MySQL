@@ -14,6 +14,7 @@ public class Pet {
 	private byte[] pPhoto;
 	private Member member;
 	private String pPhotoBase64;
+	private boolean isLiked;
 
 	public Pet() {
 	}
@@ -104,6 +105,14 @@ public class Pet {
 
 	public void setpPhotoBase64(String pPhotoBase64) {
 		this.pPhotoBase64 = pPhotoBase64;
+	}
+
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
 	}
 
 	@Override

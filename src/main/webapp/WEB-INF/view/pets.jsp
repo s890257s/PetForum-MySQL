@@ -32,18 +32,29 @@
 					id="petHome">
 
 					<c:forEach items="${pets}" var="p">
+
 						<div class="col">
 							<div class="card shadow-sm">
 								<img src="${p.pPhotoBase64 }" class="w-100" />
 								<p class="card-text fs-3">${p.pName }</p>
 								<div class="d-flex justify-content-between align-items-center">
-									<button type="button"
-										class="btn btn-sm btn-outline-secondary m-2">
-										<i class="fa-regular fa-thumbs-up"></i>
-									</button>
+
 									<div class="m-3">
 										<a href="#">${p.member.mName }</a>
 									</div>
+
+									<c:if test="${loggedInMember!=null }">
+										<button type="button"
+											class="btn btn-sm btn-outline-secondary m-2 likeBTN"
+											petID="${p.pID }">
+											<c:if test="${p.liked }">
+												<i class="fa-solid fa-heart" style="color: red"></i>
+											</c:if>
+											<c:if test="${!p.liked }">
+												<i class="fa-regular fa-heart"></i>
+											</c:if>
+										</button>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -55,6 +66,25 @@
 	</main>
 
 	<jsp:include page="${component}/footer.jsp" />
+
+	<script type="text/javascript">
+		const likeBTNs = document.querySelectorAll(".likeBTN");
+		
+		for(let b of likeBTNs){
+			b.addEventListener("click",function(){
+				const petID = b.getAttribute("petID");
+				fetch("ToggleLike.do?pID="+petID).then(rs=>rs.text()).then(status=>{
+					if(status=="like!"){
+						b.innerHTML='<i class="fa-solid fa-heart" style="color: red"></i>'
+					}
+					if(status=="unlike!"){
+						b.innerHTML='<i class="fa-regular fa-heart"></i>'
+					}
+				})
+			})
+		}
+		
+	</script>
 
 </body>
 </html>

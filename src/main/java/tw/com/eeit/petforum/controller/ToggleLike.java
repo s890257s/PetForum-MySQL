@@ -1,7 +1,6 @@
-package tw.com.eeit.petforum.controller.page;
+package tw.com.eeit.petforum.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,43 +11,35 @@ import javax.servlet.http.HttpSession;
 
 import tw.com.eeit.petforum.model.bean.Likes;
 import tw.com.eeit.petforum.model.bean.Member;
-import tw.com.eeit.petforum.model.bean.Pet;
 import tw.com.eeit.petforum.service.MemberService;
-import tw.com.eeit.petforum.util.PathConverter;
 
-@WebServlet("/pets")
-public class ToPets extends HttpServlet {
+@WebServlet("/ToggleLike.do")
+public class ToggleLike extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MemberService memberService = new MemberService();
-
-		List<Pet> pets = memberService.getAllPets();
 
 		HttpSession session = request.getSession();
 		Member loggedInMember = (Member) session.getAttribute("loggedInMember");
-		if (loggedInMember != null) {
+		int memerID = loggedInMember.getmID();
 
-			List<Likes> likesByMemberID = memberService.getAllLikesRecordByMemberID(loggedInMember.getmID());
+		Integer petID = Integer.valueOf(request.getParameter("pID"));
 
-			List<Integer> likedPetIDs = likesByMemberID.stream().map(like -> like.getPet().getpID()).toList();
+		Likes likes = new Likes(memerID, petID);
 
-			for (Pet p : pets) {
-				if (likedPetIDs.contains(p.getpID())) {
-					p.setLiked(true);
-				}
-			}
+		MemberService memberService = new MemberService();
 
-		}
-		request.setAttribute("pets", pets);
+		String status = memberService.switchLikeStatus(likes);
 
-		request.getRequestDispatcher(PathConverter.convertToWebInfPath(request.getServletPath())).forward(request,
-				response);
+		response.setContentType("text/plain;charset=UTF-8");
+		response.getWriter().write(status);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

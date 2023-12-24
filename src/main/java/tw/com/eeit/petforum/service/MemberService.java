@@ -90,4 +90,19 @@ public class MemberService {
 		}
 		return null;
 	}
+
+	public List<Likes> getAllLikesRecordByMemberID(int memberID) {
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			LikesDAO likesDAO = new LikesDAO(conn);
+
+			List<Likes> likesByMemberID = likesDAO.findAllLikesByMemberID(memberID);
+
+			return likesByMemberID;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
