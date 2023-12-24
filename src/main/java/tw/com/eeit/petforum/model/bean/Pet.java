@@ -31,6 +31,11 @@ public class Pet {
 		this.member = member;
 	}
 
+	public Pet(int pID) {
+		super();
+		this.pID = pID;
+	}
+
 	public int getpID() {
 		return pID;
 	}
