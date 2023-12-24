@@ -1,9 +1,12 @@
 package tw.com.eeit.petforum.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import tw.com.eeit.petforum.model.bean.Likes;
+import tw.com.eeit.petforum.model.bean.Member;
 import tw.com.eeit.petforum.model.dao.LikesDAO;
+import tw.com.eeit.petforum.model.dao.MemberDAO;
 import tw.com.eeit.petforum.util.ConnectionFactory;
 
 public class MemberService {
@@ -36,5 +39,35 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return "error!";
+	}
+
+	public Member getMemberByID(int memberID) {
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			MemberDAO memberDAO = new MemberDAO(conn);
+
+			Member member = memberDAO.findMemberWithPetByID(memberID);
+
+			return member;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<Likes> getAllLikesRecordByMemberID(int memberID) {
+		try (Connection conn = ConnectionFactory.getConnection()) {
+
+			LikesDAO likesDAO = new LikesDAO(conn);
+
+			List<Likes> likesByMemberID = likesDAO.findAllLikesByMemberID(memberID);
+
+			return likesByMemberID;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
