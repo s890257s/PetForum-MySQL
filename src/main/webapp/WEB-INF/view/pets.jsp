@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +32,7 @@
 				<div
 					class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center"
 					id="petHome">
+
 					<div class="col">
 						<div class="card shadow-sm">
 							<img src="${root}/assets/no_image.png" class="w-100" />
@@ -77,6 +80,7 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>

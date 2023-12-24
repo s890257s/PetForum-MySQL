@@ -19,16 +19,16 @@ public class MemberService {
 	public String switchLikeStatus(Likes likes) {
 		try (Connection conn = ConnectionFactory.getConnection()) {
 
-			LikesDAO lDAO = new LikesDAO(conn);
-			Likes likesFromDB = lDAO.findLikeByMemberIDAndPetID(likes);
+			LikesDAO likesDAO = new LikesDAO(conn);
+			Likes likesFromDB = likesDAO.findLikeByMemberIDAndPetID(likes);
 
 			if (likesFromDB == null) {
-				lDAO.addLike(likes);
+				likesDAO.addLike(likes);
 				return "like!";
 			}
 
 			if (likesFromDB != null) {
-				lDAO.removeLike(likes);
+				likesDAO.removeLike(likes);
 				return "unlike!";
 			}
 
