@@ -1,5 +1,7 @@
 package tw.com.eeit.petforum.model.bean;
 
+import java.util.Arrays;
+
 public class Pet {
 
 	private int pID;
@@ -9,6 +11,7 @@ public class Pet {
 	private byte[] pPhoto;
 	private Member member;
 	private String pPhotoBase64;
+	private boolean isLiked;
 
 	public Pet() {
 	}
@@ -26,11 +29,6 @@ public class Pet {
 		this.pAge = pAge;
 		this.pPhoto = pPhoto;
 		this.member = member;
-	}
-
-	public Pet(int pID) {
-		super();
-		this.pID = pID;
 	}
 
 	public int getpID() {
@@ -89,11 +87,18 @@ public class Pet {
 		this.pPhotoBase64 = pPhotoBase64;
 	}
 
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
+	}
+
 	@Override
 	public String toString() {
-		String m = member == null ? "null" : member.toString();
-
-		return "Pet [pID=" + pID + ", type=" + type + ", pName=" + pName + ", pAge=" + pAge + ", member=" + m + "]";
+		return "Pet [pID=" + pID + ", type=" + type + ", pName=" + pName + ", pAge=" + pAge + ", pPhoto="
+				+ Arrays.toString(pPhoto) + ", isLiked=" + isLiked + "]";
 	}
 
 }

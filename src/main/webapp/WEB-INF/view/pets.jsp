@@ -27,8 +27,11 @@
 			</div>
 		</section>
 
+
+
 		<div class="album py-5 bg-light">
 			<div class="container">
+				<!-- 	<i class="fa-solid fa-heart" style="color: red"></i> -->
 				<div
 					class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center"
 					id="petHome">
@@ -38,13 +41,14 @@
 							<img src="${root}/assets/no_image.png" class="w-100" />
 							<p class="card-text fs-3">寵物名</p>
 							<div class="d-flex justify-content-between align-items-center">
-								<button type="button"
-									class="btn btn-sm btn-outline-secondary m-2">
-									<i class="fa-regular fa-thumbs-up"></i>
-								</button>
 								<div class="m-3">
 									<a href="#">主人名</a>
 								</div>
+
+								<button type="button"
+									class="btn btn-sm btn-outline-secondary m-2">
+									<i class="fa-regular fa-heart"></i>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -54,13 +58,14 @@
 							<img src="${root}/assets/no_image.png" class="w-100" />
 							<p class="card-text fs-3">寵物名</p>
 							<div class="d-flex justify-content-between align-items-center">
-								<button type="button"
-									class="btn btn-sm btn-outline-secondary m-2">
-									<i class="fa-regular fa-thumbs-up"></i>
-								</button>
 								<div class="m-3">
 									<a href="#">主人名</a>
 								</div>
+
+								<button type="button"
+									class="btn btn-sm btn-outline-secondary m-2">
+									<i class="fa-regular fa-heart"></i>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -70,13 +75,14 @@
 							<img src="${root}/assets/no_image.png" class="w-100" />
 							<p class="card-text fs-3">寵物名</p>
 							<div class="d-flex justify-content-between align-items-center">
-								<button type="button"
-									class="btn btn-sm btn-outline-secondary m-2">
-									<i class="fa-solid fa-thumbs-up" style="color: #025cf7;"></i>
-								</button>
 								<div class="m-3">
 									<a href="#">主人名</a>
 								</div>
+
+								<button type="button"
+									class="btn btn-sm btn-outline-secondary m-2">
+									<i class="fa-regular fa-heart"></i>
+								</button>
 							</div>
 						</div>
 					</div>
